@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_journal_journal_user,journal.journal.user,model_journal_journal,base.group_user,1,1,1,1
-access_journal_entry_user,journal.entry.user,model_journal_entry,base.group_user,1,1,1,1
+access_journal_entry_user,journal.entry.user,model_journal_entry,base.group_user,1,1,1,0
+access_journal_entry_manager,journal.entry.manager,model_journal_entry,base.group_system,1,1,1,1
+access_journal_entry_template_user,journal.entry.template.user,model_journal_entry_template,base.group_user,1,0,0,0
+access_journal_entry_template_manager,journal.entry.template.manager,model_journal_entry_template,base.group_system,1,1,1,1
