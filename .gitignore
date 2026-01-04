@@ -1,0 +1,55 @@
+# Odoo core
+odoo/
+
+# Data directories
+odoo_data/
+filestore/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.pyc
+
+# Virtual Environment
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+
+# Config (може містити паролі)
+# Розкоментуйте якщо не хочете комітити конфіг:
+# odoo.conf
+
+# Session files
+sessions/
