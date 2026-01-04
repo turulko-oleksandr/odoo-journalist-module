@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ========================================= -->
+    <!-- Journal Entry List View -->
+    <!-- ========================================= -->
+    <record id="view_journal_entry_list" model="ir.ui.view">
+        <field name="name">journal.entry.list</field>
+        <field name="model">journal.entry</field>
+        <field name="arch" type="xml">
+            <list string="Journal Entries" default_order="entry_date desc">
+                <field name="entry_date"/>
+                <field name="client_id"/>
+                <field name="specialist_id"/>
+                <field name="content" widget="html" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ========================================= -->
+    <!-- Journal Entry Form View -->
+    <!-- ========================================= -->
+    <record id="view_journal_entry_form" model="ir.ui.view">
+        <field name="name">journal.entry.form</field>
+        <field name="model">journal.entry</field>
+        <field name="arch" type="xml">
+            <form string="Journal Entry">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="client_id"/>
+                            <field name="entry_date"/>
+                        </group>
+                        <group>
+                            <field name="specialist_id" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <group string="Templates">
+                        <field name="template_ids" widget="many2many_tags"/>
+                    </group>
+                    
+                    <group string="Entry Content">
+                        <field name="content" widget="html"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ========================================= -->
+    <!-- Journal Entry Action -->
+    <!-- ========================================= -->
+    <record id="action_journal_entry" model="ir.actions.act_window">
+        <field name="name">Journal Entries</field>
+        <field name="res_model">journal.entry</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first journal entry
+            </p>
+            <p>
+                Click the create button to add a new entry for a client.
+            </p>
+        </field>
+    </record>
+
+</odoo>

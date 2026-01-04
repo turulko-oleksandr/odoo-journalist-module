@@ -17,6 +17,8 @@
     "data": [
         "security/journal_security.xml",
         "security/ir.model.access.csv",
+        "views/journal_entry_views.xml",
+        "views/menu.xml",
     ],
     "demo": [],
     "installable": True,
