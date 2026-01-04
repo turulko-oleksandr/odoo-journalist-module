@@ -21,5 +21,21 @@
               parent="menu_journal_entries"
               action="action_journal_entry"
               sequence="10"/>
+    
+    <!-- ========================================= -->
+    <!-- Submenu: Configuration -->
+    <!-- ========================================= -->
+    <menuitem id="menu_journal_configuration"
+              name="Configuration"
+              parent="menu_journal_root"
+              sequence="90"
+              groups="journal_module.group_journal_admin"/>
+    
+    <menuitem id="menu_journal_templates"
+              name="Entry Templates"
+              parent="menu_journal_configuration"
+              action="action_entry_template"
+              sequence="10"
+              groups="journal_module.group_journal_admin"/>
 
 </odoo>
