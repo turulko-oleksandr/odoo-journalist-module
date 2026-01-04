@@ -16,6 +16,7 @@
     "website": "https://github.com/turulko-oleksandr",
     "depends": ["base"],
     "data": [
+        "security/journal_security.xml",
         "security/ir.model.access.csv",
     ],
     "demo": [],
