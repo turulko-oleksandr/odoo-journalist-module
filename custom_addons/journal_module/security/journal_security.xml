@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- ========================================= -->
+        <!-- Security Groups -->
+        <!-- ========================================= -->
+        
+        <!-- Group: Journal Specialist -->
+        <record id="group_journal_specialist" model="res.groups">
+            <field name="name">Journal Specialist</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">Specialist can create entries and edit own entries, use templates</field>
+        </record>
+        
+        <!-- Group: Journal Administrator -->
+        <record id="group_journal_admin" model="res.groups">
+            <field name="name">Journal Administrator</field>
+            <field name="implied_ids" eval="[(4, ref('group_journal_specialist'))]"/>
+            <field name="comment">Administrator can view all entries, create and edit templates</field>
+        </record>
+        
+        <!-- ========================================= -->
+        <!-- RECORD RULES (Row Level Security) -->
+        <!-- ========================================= -->
+        
+        <!-- Rule: Specialist can only edit own journal entries -->
+        <record id="journal_entry_specialist_rule" model="ir.rule">
+            <field name="name">Journal Entry: Specialist can only edit own entries</field>
+            <field name="model_id" ref="model_journal_entry"/>
+            <field name="domain_force">[('specialist_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_journal_specialist'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+        
+        <!-- Rule: Administrator can see and edit all journal entries -->
+        <record id="journal_entry_admin_rule" model="ir.rule">
+            <field name="name">Journal Entry: Administrator can see all entries</field>
+            <field name="model_id" ref="model_journal_entry"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_journal_admin'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+        
+        <!-- Rule: All specialists can read templates -->
+        <record id="journal_template_specialist_read_rule" model="ir.rule">
+            <field name="name">Template: Specialists can read all templates</field>
+            <field name="model_id" ref="model_journal_entry_template"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_journal_specialist'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+        
+        <!-- Rule: Administrators can manage templates -->
+        <record id="journal_template_admin_rule" model="ir.rule">
+            <field name="name">Template: Administrators can manage all templates</field>
+            <field name="model_id" ref="model_journal_entry_template"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_journal_admin'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+        
+    </data>
+</odoo>

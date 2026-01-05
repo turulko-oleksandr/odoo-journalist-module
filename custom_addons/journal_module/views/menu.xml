@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- ========================================= -->
+    <!-- Main Menu -->
+    <!-- ========================================= -->
+    <menuitem id="menu_journal_root"
+              name="Journal"
+              sequence="10"/>
+    
+    <!-- ========================================= -->
+    <!-- Submenu: Entries -->
+    <!-- ========================================= -->
+    <menuitem id="menu_journal_entries"
+              name="Entries"
+              parent="menu_journal_root"
+              sequence="10"/>
+    
+    <menuitem id="menu_journal_entry_all"
+              name="All Entries"
+              parent="menu_journal_entries"
+              action="action_journal_entry"
+              sequence="10"/>
+    
+    <!-- ========================================= -->
+    <!-- Submenu: Configuration -->
+    <!-- ========================================= -->
+    <menuitem id="menu_journal_configuration"
+              name="Configuration"
+              parent="menu_journal_root"
+              sequence="90"
+              groups="journal_module.group_journal_admin"/>
+    
+    <menuitem id="menu_journal_templates"
+              name="Entry Templates"
+              parent="menu_journal_configuration"
+              action="action_entry_template"
+              sequence="10"
+              groups="journal_module.group_journal_admin"/>
+
+</odoo>
