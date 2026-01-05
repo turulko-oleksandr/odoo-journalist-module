@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ========================================= -->
+    <!-- Extend Partner Form View -->
+    <!-- ========================================= -->
+    <record id="view_partner_form_journal" model="ir.ui.view">
+        <field name="name">res.partner.form.journal</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            
+            <!-- Add button in button box -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="%(action_journal_entry)d" 
+                        type="action"
+                        class="oe_stat_button" 
+                        icon="fa-book"
+                        context="{'default_client_id': id, 'search_default_client_id': id}">
+                    <field name="journal_entry_count" widget="statinfo" string="Entries"/>
+                </button>
+            </xpath>
+            
+            <!-- Add Journal Entries tab -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Journal Entries" name="journal_entries">
+                    <field name="journal_entry_ids" context="{'default_client_id': id}">
+                        <list string="Journal Entries" default_order="entry_date desc" create="1" edit="0" delete="0">
+                            <field name="entry_date"/>
+                            <field name="specialist_id"/>
+                            <field name="content" widget="html"/>
+                        </list>
+                        <form string="Journal Entry">
+                            <group>
+                                <group>
+                                    <field name="entry_date"/>
+                                    <field name="specialist_id" readonly="1"/>
+                                </group>
+                            </group>
+                            
+                            <group string="Templates">
+                                <field name="template_ids" widget="many2many_tags"/>
+                            </group>
+                            
+                            <group string="Entry Content">
+                                <field name="content" widget="html"/>
+                            </group>
+                        </form>
+                    </field>
+                </page>
+            </xpath>
+            
+        </field>
+    </record>
+</odoo>

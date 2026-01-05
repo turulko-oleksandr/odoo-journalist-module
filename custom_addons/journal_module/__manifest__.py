@@ -14,13 +14,14 @@
         * Manage and organize client interactions
     """,
     "author": "Oleksandr Turulko",
-    "website": "https://github.com/turulko-oleksandr",
+    "website": "https://github.com/turulko-oleksandr/odoo-journalist-module",
     "depends": ["base"],
     "data": [
         "security/journal_security.xml",
         "security/ir.model.access.csv",
         "views/journal_entry_views.xml",
         "views/entry_template_views.xml",
+        "views/client_views.xml",
         "views/menu.xml",
     ],
     "demo": [],
